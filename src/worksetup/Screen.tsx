@@ -5,7 +5,7 @@ import { CLIPS, FOOTAGE, REGIONS, SCENES, sceneAt, sceneEnd, sceneStart, TAPS, t
 
 const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 const ease = Easing.bezier(0.65, 0, 0.35, 1);
-const RED = "#ff3b30";
+const RED = "#e5352b";
 const YELLOW = "#ffd400";
 
 type Cam = { readonly cx: number; readonly cy: number; readonly z: number };
@@ -132,7 +132,6 @@ export const Screen: React.FC<{ readonly width: number; readonly height: number 
   const left = Math.min(0, Math.max(width - FOOTAGE.w * scale, width / 2 - cam.cx * scale));
   const top = Math.min(0, Math.max(height - FOOTAGE.h * scale, height / 2 - cam.cy * scale));
   const scene = sceneAt(t);
-  const pulse = 0.5 + 0.5 * Math.sin(frame / 5);
 
   return (
     <div style={{ position: "relative", width, height, overflow: "hidden", borderRadius: 10, backgroundColor: "#000" }}>
@@ -165,9 +164,9 @@ export const Screen: React.FC<{ readonly width: number; readonly height: number 
                   width={r.w + pad * 2}
                   height={r.h + pad * 2}
                   rx={6}
-                  fill={isNumbered ? "rgba(255,59,48,0.06)" : "rgba(255,59,48,0.08)"}
+                  fill="none"
                   stroke={RED}
-                  strokeWidth={isNumbered ? 4 : 5 + pulse * 2}
+                  strokeWidth={4}
                   vectorEffect="non-scaling-stroke"
                 />
                 {isNumbered ? (

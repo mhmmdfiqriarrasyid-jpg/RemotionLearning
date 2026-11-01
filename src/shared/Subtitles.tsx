@@ -11,7 +11,9 @@ export const Subtitles: React.FC<{
   readonly right: number;
   readonly bottom: number;
   readonly fontSize?: number;
-}> = ({ lines, left, right, bottom, fontSize = 40 }) => {
+  readonly variant?: "box" | "plain"; // plain = dark text, no background
+  readonly align?: "center" | "left";
+}> = ({ lines, left, right, bottom, fontSize = 40, variant = "box", align = "center" }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const t = frame / fps;
@@ -24,18 +26,22 @@ export const Subtitles: React.FC<{
     clamp,
   );
   return (
-    <div style={{ position: "absolute", left, right, bottom, display: "flex", justifyContent: "center", opacity }}>
+    <div style={{ position: "absolute", left, right, bottom, display: "flex", justifyContent: align === "left" ? "flex-start" : "center", opacity }}>
       <div
-        style={{
-          backgroundColor: "rgba(8, 14, 22, 0.82)",
-          color: "white",
-          fontSize,
-          lineHeight: 1.3,
-          fontWeight: 600,
-          padding: "14px 28px",
-          borderRadius: 14,
-          textAlign: "center",
-        }}
+        style={
+          variant === "plain"
+            ? { color: "#1f2a22", fontSize, lineHeight: 1.35, fontWeight: 500, textAlign: align }
+            : {
+                backgroundColor: "rgba(8, 14, 22, 0.82)",
+                color: "white",
+                fontSize,
+                lineHeight: 1.3,
+                fontWeight: 600,
+                padding: "14px 28px",
+                borderRadius: 14,
+                textAlign: "center",
+              }
+        }
       >
         {line.text}
       </div>
