@@ -229,10 +229,7 @@ const Panel: React.FC = () => {
         flexDirection: "column",
       }}
     >
-      <div style={{ fontSize: 24, letterSpacing: 4, color: "#ffd400", fontWeight: 700 }}>
-        PARTISI 1
-      </div>
-      <div style={{ fontSize: 64, fontWeight: 900, lineHeight: 1.05, marginTop: 8 }}>
+      <div style={{ fontSize: 64, fontWeight: 900, lineHeight: 1.05 }}>
         CHECK DEVICE UNIT
       </div>
 
