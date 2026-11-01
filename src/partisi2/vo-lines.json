@@ -1,0 +1,22 @@
+[
+  {
+    "id": "01-equipment",
+    "text": "Langkah berikutnya, sinkronkan implement melalui menu Equipment Manager."
+  },
+  {
+    "id": "02-worksetup",
+    "text": "Lanjutkan ke Work Setup pada Applications."
+  },
+  {
+    "id": "03-details",
+    "text": "Isi kolom Details dengan nama dan ID operator yang bertugas,"
+  },
+  {
+    "id": "04-type",
+    "text": "pilih Type sesuai standarisasi penamaan kerja,"
+  },
+  {
+    "id": "05-depth",
+    "text": "serta tentukan nilai Depth kedalaman tanah persis sesuai instruksi asisten lapangan."
+  }
+]

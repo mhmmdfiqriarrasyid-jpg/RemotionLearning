@@ -1,0 +1,54 @@
+{
+  "01-intro": {
+    "file": "voiceover/worksetup/01-intro.mp3",
+    "duration": 5.398
+  },
+  "02-why": {
+    "file": "voiceover/worksetup/02-why.mp3",
+    "duration": 6.094
+  },
+  "03-open-menu": {
+    "file": "voiceover/worksetup/03-open-menu.mp3",
+    "duration": 6.28
+  },
+  "04-open-setup": {
+    "file": "voiceover/worksetup/04-open-setup.mp3",
+    "duration": 4.144
+  },
+  "05-overview": {
+    "file": "voiceover/worksetup/05-overview.mp3",
+    "duration": 7.348
+  },
+  "06-location": {
+    "file": "voiceover/worksetup/06-location.mp3",
+    "duration": 8.788
+  },
+  "07-equipment": {
+    "file": "voiceover/worksetup/07-equipment.mp3",
+    "duration": 13.385
+  },
+  "08-details": {
+    "file": "voiceover/worksetup/08-details.mp3",
+    "duration": 9.438
+  },
+  "09-type": {
+    "file": "voiceover/worksetup/09-type.mp3",
+    "duration": 9.438
+  },
+  "10-depth": {
+    "file": "voiceover/worksetup/10-depth.mp3",
+    "duration": 4.237
+  },
+  "11-ok": {
+    "file": "voiceover/worksetup/11-ok.mp3",
+    "duration": 2.936
+  },
+  "12-result": {
+    "file": "voiceover/worksetup/12-result.mp3",
+    "duration": 9.763
+  },
+  "13-recap": {
+    "file": "voiceover/worksetup/13-recap.mp3",
+    "duration": 5.769
+  }
+}

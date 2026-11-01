@@ -1,0 +1,22 @@
+{
+  "01-equipment": {
+    "file": "voiceover/partisi2/01-equipment.mp3",
+    "duration": 4.701
+  },
+  "02-worksetup": {
+    "file": "voiceover/partisi2/02-worksetup.mp3",
+    "duration": 3.029
+  },
+  "03-details": {
+    "file": "voiceover/partisi2/03-details.mp3",
+    "duration": 4.608
+  },
+  "04-type": {
+    "file": "voiceover/partisi2/04-type.mp3",
+    "duration": 3.633
+  },
+  "05-depth": {
+    "file": "voiceover/partisi2/05-depth.mp3",
+    "duration": 5.398
+  }
+}
