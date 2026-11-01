@@ -1,0 +1,20 @@
+[
+  {
+    "id": "01-intro",
+    "text": "Sebelum unit turun ke lapangan, pastikan dua perangkat utama siap beroperasi:"
+  },
+  {
+    "id": "02-devices",
+    "text": "GPS StarFire 7500 dan Display CommandCenter G5.",
+    "speak": "GPS StarFire 7500, dan Display CommandCenter G5."
+  },
+  {
+    "id": "03-status",
+    "text": "Buka Status Center, pastikan nilai Accuracy telah mencapai angka seratus persen penuh."
+  },
+  {
+    "id": "04-field",
+    "text": "Begitu masuk ke area kerja, langsung tentukan Boundary lokasi serta jalur kerja AB-Line yang benar.",
+    "speak": "Begitu masuk ke area kerja, langsung tentukan Boundary lokasi, serta jalur kerja AB-Line yang benar."
+  }
+]

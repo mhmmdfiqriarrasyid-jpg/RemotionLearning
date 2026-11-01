@@ -28,19 +28,25 @@ Render Partisi 1:
 npx remotion render Partisi1-CheckDeviceUnit out/partisi1.mp4
 ```
 
-### Voice-over Partisi 1
-
-Audio VO dan durasinya dibaca dari `public/voiceover/partisi1/manifest.json`. Durasi tiap scene dan total video otomatis mengikuti file ini. Teks subtitle ada di `src/partisi1/vo.ts`.
-
-**ElevenLabs (utama).** Butuh API key dan akses jaringan ke `api.elevenlabs.io`. Set environment variable `ELEVENLABS_API_KEY` dan `ELEVENLABS_VOICE_ID` (ID suara dari Voice Library ElevenLabs), lalu jalankan:
+Render Partisi 2:
 
 ```bash
-node scripts/generate-voiceover-elevenlabs.ts
+npx remotion render Partisi2-WorkSetup out/partisi2.mp4
 ```
 
-Opsional: `ELEVENLABS_MODEL_ID` (default `eleven_multilingual_v2`). Teks yang diucapkan ada di script tersebut.
+### Voice-over
 
-**Piper (cadangan offline, suara kurang natural).**
+Teks VO tiap partisi ada di `src/<partisi>/vo-lines.json` (`text` = subtitle, `speak` opsional = teks yang diucapkan jika berbeda). Audio dan durasinya dibaca dari `public/voiceover/<partisi>/manifest.json`; durasi tiap scene dan total video otomatis mengikuti file ini.
+
+**ElevenLabs (utama).** Butuh API key dan akses jaringan ke `api.elevenlabs.io`. Set environment variable `ELEVENLABS_API_KEY` dan `ELEVENLABS_VOICE_ID`, lalu jalankan (contoh untuk Partisi 2):
+
+```bash
+node scripts/generate-voiceover-elevenlabs.ts partisi2
+```
+
+Tambahkan ID baris di belakangnya untuk membuat ulang baris tertentu saja, misalnya `partisi2 04-type`. Opsional: `ELEVENLABS_MODEL_ID` (default `eleven_multilingual_v2`).
+
+**Piper (cadangan offline untuk Partisi 1, suara kurang natural).**
 
 ```bash
 pip install piper-tts
@@ -68,6 +74,8 @@ npx remotion still MyComp out/frame.png --frame=60
 - `src/Root.tsx` — daftar semua composition.
 - `src/Composition.tsx` — composition `MyComp` (1280×720, 30 fps, 3 detik): judul dan subjudul dengan animasi fade-in.
 - `src/partisi1/` — composition `Partisi1-CheckDeviceUnit` (1920×1080, 30 fps, ±23,7 detik mengikuti durasi VO): scene isometrik traktor, cek StarFire 7500 & CommandCenter G5, popup Status Center (Accuracy 100%), lalu Boundary & AB-Line. Waktu tiap scene dihitung di `src/partisi1/timeline.ts` dari durasi VO.
+- `src/partisi2/` — composition `Partisi2-WorkSetup` (1920×1080, 30 fps, ±24 detik): zoom dari kabin ke layar G5, Applications → Equipment Manager (sinkron implement) → Work Setup, lalu pengisian Details, Type, dan Depth dengan sorotan merah. Data contoh (nama operator, kode Type, kedalaman) ada di `src/partisi2/timeline.ts` (`SAMPLE`).
+- `src/shared/` — komponen bersama (timeline VO, subtitle).
 - `public/` — aset (gambar, audio, video). Akses dengan `staticFile()`.
 - `scripts/generate-voiceover-elevenlabs.ts` — generator VO ElevenLabs.
 - `scripts/generate-voiceover.py` — generator VO offline (Piper).
