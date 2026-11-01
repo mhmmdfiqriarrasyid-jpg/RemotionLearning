@@ -1,18 +1,18 @@
 {
   "01-intro": {
-    "file": "voiceover/partisi1/01-intro.wav",
-    "duration": 4.876
+    "file": "voiceover/partisi1/01-intro.mp3",
+    "duration": 4.887
   },
   "02-devices": {
-    "file": "voiceover/partisi1/02-devices.wav",
-    "duration": 4.969
+    "file": "voiceover/partisi1/02-devices.mp3",
+    "duration": 4.237
   },
   "03-status": {
-    "file": "voiceover/partisi1/03-status.wav",
-    "duration": 5.283
+    "file": "voiceover/partisi1/03-status.mp3",
+    "duration": 5.63
   },
   "04-field": {
-    "file": "voiceover/partisi1/04-field.wav",
-    "duration": 6.548
+    "file": "voiceover/partisi1/04-field.mp3",
+    "duration": 6.698
   }
 }
