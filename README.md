@@ -74,6 +74,10 @@ Render satu frame sebagai gambar:
 npx remotion still MyComp out/frame.png --frame=60
 ```
 
+## Standar visual
+
+Tata letak, tipografi, warna, dan aturan penulisan untuk semua video ada di [`docs/STANDAR-VISUAL.md`](docs/STANDAR-VISUAL.md). Nilainya dipakai di kode lewat `src/shared/design.ts`. Teks layar video Work Setup dikumpulkan di `src/worksetup/copy.ts`.
+
 ## Struktur
 
 - `src/index.ts` — entry point, mendaftarkan root.
@@ -83,7 +87,7 @@ npx remotion still MyComp out/frame.png --frame=60
 - `src/partisi2/` — composition `Partisi2-WorkSetup` (1920×1080, 30 fps, ±24 detik): zoom dari kabin ke layar G5, Applications → Equipment Manager (sinkron implement) → Work Setup, lalu pengisian Details, Type, dan Depth dengan sorotan merah. Data contoh (nama operator, kode Type, kedalaman) ada di `src/partisi2/timeline.ts` (`SAMPLE`).
 - `src/worksetup/` — composition `WorkSetup-Lengkap` (1920×1080, 30 fps, ±98 detik, tampilan terang dan minimal): rekaman layar asli G5 (sebelum & sesudah) dengan zoom, kotak sorotan merah, catatan singkat per langkah dan progres 4 bagian, perbandingan label di layar Guidance, dan checklist penutup. Posisi sorotan dan waktu ketukan ada di `src/worksetup/timeline.ts`.
 - `public/footage/` — rekaman layar G5 dari PPT (`worksetup-before.mp4`, `worksetup-after.mp4`) dan frame diam yang diambil darinya.
-- `src/shared/` — komponen bersama (timeline VO, subtitle).
+- `src/shared/` — komponen bersama: token desain (`design.ts`), timeline VO, subtitle.
 - `public/` — aset (gambar, audio, video). Akses dengan `staticFile()`.
 - `scripts/generate-voiceover-elevenlabs.ts` — generator VO ElevenLabs.
 - `scripts/generate-voiceover.py` — generator VO offline (Piper).
