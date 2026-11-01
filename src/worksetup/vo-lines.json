@@ -1,0 +1,19 @@
+[
+  { "id": "01-intro", "text": "Work Setup adalah tempat mengisi data pekerjaan sebelum traktor mulai jalan." },
+  { "id": "02-why", "text": "Data ini menentukan apakah coverage map, atau peta kerja, terekam dengan akurat." },
+  { "id": "03-open-menu", "text": "Dari layar Guidance, tekan Menu, pilih Applications, lalu buka Work Setup." },
+  { "id": "04-open-setup", "text": "Cara yang lebih cepat: tekan tombol Setup di pojok kiri bawah layar." },
+  { "id": "05-overview", "text": "Di dalam Work Setup ada empat bagian yang wajib dicek: Location, Equipment, Details, dan Work Summary." },
+  { "id": "06-location", "text": "Pertama, Location. Pilih Boundary sesuai lokasi kerja. Jika salah, data akan terekam di lokasi yang salah." },
+  {
+    "id": "07-equipment",
+    "text": "Kedua, Equipment. Pastikan traktor dan implement sudah sesuai, contohnya Bed Ripper (2 Rows). Jika salah, lebar kerja ikut salah dan rekaman luasan kerja menjadi tidak benar.",
+    "speak": "Kedua, Equipment. Pastikan traktor dan implement sudah sesuai, contohnya Bed Ripper two rows. Jika salah, lebar kerja ikut salah, dan rekaman luasan kerja menjadi tidak benar."
+  },
+  { "id": "08-details", "text": "Ketiga, Details. Pilih nama operator dan tahun kerja. Data ini berhubungan dengan penggajian operator." },
+  { "id": "09-type", "text": "Keempat, Work Summary. Pilih Type sesuai tipe kerja yang dilakukan. Bagian ini sangat penting, karena data yang salah tidak bisa diubah." },
+  { "id": "10-depth", "text": "Isi juga Depth sesuai instruksi asisten lapangan." },
+  { "id": "11-ok", "text": "Setelah semua data benar, tekan OK." },
+  { "id": "12-result", "text": "Di layar Guidance, label pekerjaan berubah dari Tillage menjadi Type yang dipilih. Pastikan label ini sudah benar sebelum mulai jalan." },
+  { "id": "13-recap", "text": "Ingat, cek Location, Equipment, Details, dan Type setiap kali sebelum mulai bekerja." }
+]
