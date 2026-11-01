@@ -28,9 +28,19 @@ Render Partisi 1:
 npx remotion render Partisi1-CheckDeviceUnit out/partisi1.mp4
 ```
 
-### Voice-over Partisi 1 (text-to-speech offline)
+### Voice-over Partisi 1
 
-VO dibuat dengan [Piper](https://github.com/OHF-Voice/piper1-gpl) memakai suara bahasa Indonesia `id_ID-news_tts-medium`. File hasilnya sudah ada di `public/voiceover/partisi1/`. Untuk membuat ulang (misalnya setelah mengubah teks):
+Audio VO dan durasinya dibaca dari `public/voiceover/partisi1/manifest.json`. Durasi tiap scene dan total video otomatis mengikuti file ini. Teks subtitle ada di `src/partisi1/vo.ts`.
+
+**ElevenLabs (utama).** Butuh API key dan akses jaringan ke `api.elevenlabs.io`. Set environment variable `ELEVENLABS_API_KEY` dan `ELEVENLABS_VOICE_ID` (ID suara dari Voice Library ElevenLabs), lalu jalankan:
+
+```bash
+node scripts/generate-voiceover-elevenlabs.ts
+```
+
+Opsional: `ELEVENLABS_MODEL_ID` (default `eleven_multilingual_v2`). Teks yang diucapkan ada di script tersebut.
+
+**Piper (cadangan offline, suara kurang natural).**
 
 ```bash
 pip install piper-tts
@@ -44,7 +54,7 @@ curl -L -o voice.tar.bz2 https://github.com/k2-fsa/sherpa-onnx/releases/download
 python3 scripts/generate-voiceover.py ./vits-piper-id_ID-news_tts-medium 0.88
 ```
 
-Angka terakhir adalah kecepatan bicara (`length_scale`: lebih kecil = lebih cepat). Teks yang diucapkan ada di `scripts/generate-voiceover.py` (istilah Inggris ditulis fonetis, misalnya "Star Fayer"), sedangkan teks subtitle ada di `src/partisi1/vo.ts`. Durasi tiap scene dan total video otomatis mengikuti `durations.json`.
+Setelah membuat ulang VO, render ulang videonya.
 
 Render satu frame sebagai gambar:
 
@@ -59,7 +69,8 @@ npx remotion still MyComp out/frame.png --frame=60
 - `src/Composition.tsx` — composition `MyComp` (1280×720, 30 fps, 3 detik): judul dan subjudul dengan animasi fade-in.
 - `src/partisi1/` — composition `Partisi1-CheckDeviceUnit` (1920×1080, 30 fps, ±23,7 detik mengikuti durasi VO): scene isometrik traktor, cek StarFire 7500 & CommandCenter G5, popup Status Center (Accuracy 100%), lalu Boundary & AB-Line. Waktu tiap scene dihitung di `src/partisi1/timeline.ts` dari durasi VO.
 - `public/` — aset (gambar, audio, video). Akses dengan `staticFile()`.
-- `scripts/generate-voiceover.py` — generator VO text-to-speech.
+- `scripts/generate-voiceover-elevenlabs.ts` — generator VO ElevenLabs.
+- `scripts/generate-voiceover.py` — generator VO offline (Piper).
 - `remotion.config.ts` — konfigurasi CLI.
 - `.claude/skills/` — Remotion Agent Skills resmi untuk Claude Code.
 

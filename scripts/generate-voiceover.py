@@ -10,8 +10,8 @@ Run from the repo root:
 
 length_scale > 1.0 speaks slower, < 1.0 faster (default 1.0).
 
-Writes public/voiceover/partisi1/<id>.wav and durations.json. The video
-reads durations.json to time each scene, so re-render after regenerating.
+Writes public/voiceover/partisi1/<id>.wav and manifest.json. The video
+reads manifest.json to time each scene, so re-render after regenerating.
 
 `speak` is the text sent to TTS. English product terms are spelled
 phonetically so the Indonesian voice says them closer to English. The
@@ -57,16 +57,20 @@ def main() -> None:
     )
     syn = SynthesisConfig(length_scale=length_scale)
     os.makedirs(OUT_DIR, exist_ok=True)
-    durations = {}
+    manifest = {}
     for line in LINES:
         path = os.path.join(OUT_DIR, f"{line['id']}.wav")
         with wave.open(path, "wb") as w:
             voice.synthesize_wav(line["speak"], w, syn_config=syn)
         with wave.open(path, "rb") as r:
-            durations[line["id"]] = round(r.getnframes() / r.getframerate(), 3)
-        print(f"{path}: {durations[line['id']]}s")
-    with open(os.path.join(OUT_DIR, "durations.json"), "w") as f:
-        json.dump(durations, f, indent=2)
+            duration = round(r.getnframes() / r.getframerate(), 3)
+        manifest[line["id"]] = {
+            "file": f"voiceover/partisi1/{line['id']}.wav",
+            "duration": duration,
+        }
+        print(f"{path}: {duration}s")
+    with open(os.path.join(OUT_DIR, "manifest.json"), "w") as f:
+        json.dump(manifest, f, indent=2)
         f.write("\n")
 
 
