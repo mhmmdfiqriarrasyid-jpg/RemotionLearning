@@ -51,7 +51,8 @@ export const G5Illustration: React.FC<{
   readonly popup: number; // 0..1 Status Center popup appearance
   readonly boundary: number; // 0..1
   readonly abLine: number; // 0..1
-}> = ({ mode, accuracy, popup, boundary, abLine }) => {
+  readonly tractor?: number; // 0..1 position along the AB-Line on the map
+}> = ({ mode, accuracy, popup, boundary, abLine, tractor = 0 }) => {
   // 10.1" touchscreen ~16:10. Screen area 560 x 350 inside a black bezel.
   const sx = 40;
   const sy = 30;
@@ -114,6 +115,11 @@ export const G5Illustration: React.FC<{
             />
             {abLine > 0 ? <ScreenPin x={40} y={196} label="A" /> : null}
             {abLine >= 1 ? <ScreenPin x={sw - 80} y={196} label="B" /> : null}
+            {abLine > 0 ? (
+              <g transform={`translate(${40 + (sw - 120) * tractor} 196)`}>
+                <path d="M -11 -9 L 13 0 L -11 9 Z" fill="#ffffff" stroke="#0d0f12" strokeWidth={2} />
+              </g>
+            ) : null}
           </>
         ) : null}
       </g>

@@ -262,6 +262,7 @@ const Panel: React.FC = () => {
             popup={t >= T.field ? 0 : popup}
             boundary={boundary}
             abLine={abLine}
+            tractor={interpolate(frame, [s(T.field + 3), s(T.end)], [0.06, 0.62], clamp)}
           />
         </div>
       </div>
