@@ -1,13 +1,17 @@
 import React from "react";
+import { Audio } from "@remotion/media";
 import {
   AbsoluteFill,
   Easing,
   interpolate,
+  staticFile,
+  Track,
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
 import { G5Illustration, StarFireIllustration } from "./Devices";
 import { T } from "./timeline";
+import { VO, VO_GAP } from "./vo";
 import { World } from "./World";
 
 const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
@@ -15,27 +19,6 @@ const FONT = "system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif";
 
 const WORLD_W = 1180;
 const PANEL_W = 1920 - WORLD_W;
-
-// Voice-over lines shown as subtitles (seconds). Re-time these to the
-// recorded VO audio once it exists.
-const VO: { from: number; to: number; text: string }[] = [
-  {
-    from: 0.3,
-    to: 4,
-    text: "Sebelum unit turun ke lapangan, pastikan dua perangkat utama siap beroperasi:",
-  },
-  { from: 4, to: 8.5, text: "GPS StarFire 7500 dan Display CommandCenter G5." },
-  {
-    from: 8.5,
-    to: 14,
-    text: "Buka Status Center, pastikan nilai Accuracy telah mencapai angka seratus persen penuh.",
-  },
-  {
-    from: 14,
-    to: 19.8,
-    text: "Begitu masuk ke area kerja, langsung tentukan Boundary lokasi serta jalur kerja AB-Line yang benar.",
-  },
-];
 
 const CHECKS: { label: string; active: number; done: number }[] = [
   { label: "GPS: StarFire 7500", active: T.starfire, done: T.g5 },
@@ -45,6 +28,7 @@ const CHECKS: { label: string; active: number; done: number }[] = [
 ];
 
 export const Partisi1: React.FC = () => {
+  const { fps } = useVideoConfig();
   return (
     <AbsoluteFill style={{ backgroundColor: "#0b1420", fontFamily: FONT }}>
       <div style={{ position: "absolute", left: 0, top: 0, width: WORLD_W, height: 1080, overflow: "hidden" }}>
@@ -53,6 +37,17 @@ export const Partisi1: React.FC = () => {
         <Subtitles />
       </div>
       <Panel />
+      <Track name="Voiceover">
+        {VO.map((line) => (
+          <Audio
+            key={line.id}
+            name={`VO ${line.id}`}
+            src={staticFile(line.file)}
+            from={Math.round(line.from * fps)}
+            durationInFrames={Math.ceil((line.to - line.from) * fps) + 1}
+          />
+        ))}
+      </Track>
     </AbsoluteFill>
   );
 };
@@ -141,11 +136,11 @@ const Subtitles: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const t = frame / fps;
-  const line = VO.find((l) => t >= l.from && t < l.to);
+  const line = VO.find((l) => t >= l.from && t < l.to + VO_GAP);
   if (!line) return null;
   const opacity = interpolate(
     t,
-    [line.from, line.from + 0.25, line.to - 0.25, line.to],
+    [line.from - 0.1, line.from + 0.15, line.to + VO_GAP - 0.2, line.to + VO_GAP],
     [0, 1, 1, 0],
     clamp,
   );

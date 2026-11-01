@@ -1,12 +1,17 @@
-// Scene timing for Partisi 1 (in seconds). Adjust these once the real
-// voice-over audio is recorded, so visuals stay in sync with the narration.
+import { VO } from "./vo";
+
+const [, devices, status, field] = VO;
+
+// Scene timing (seconds), derived from the voice-over durations so the
+// visuals follow the narration. Regenerate the VO and these shift with it.
 export const T = {
   intro: 0, // establishing shot: tractor in the sugarcane field
-  starfire: 4, // zoom to StarFire 7500 on the cab roof
-  g5: 6.5, // zoom into the cab to the CommandCenter G5
-  status: 8.5, // Status Center popup, Accuracy bar fills to 100%
-  field: 14, // zoom out, draw Boundary + AB-Line, tractor drives
-  end: 20,
+  starfire: devices.from - 0.2, // zoom to StarFire 7500 on the cab roof
+  // switch to the G5 roughly when the narration reaches "Display ..."
+  g5: devices.from + (devices.to - devices.from) * 0.5,
+  status: status.from - 0.2, // Status Center popup, Accuracy fills to 100%
+  field: field.from - 0.2, // zoom out, draw Boundary + AB-Line
+  end: field.to + 0.8,
 } as const;
 
 // World layout (isometric world units).
